@@ -13,10 +13,10 @@ button {
 }
 
 :root {
-  --dk-violet: hsl(268, 75%, 9%);
+  --dk-violet: hsl(295, 74%, 9%);
   --lt-violet: hsl(268, 47%, 21%);
-  --lt-violet2: hsl(281, 89%, 26%);
-  --vb-violet: hsl(285, 91%, 52%);
+  --lt-violet2: hsl(157, 89%, 26%);
+  --vb-violet: hsl(354, 91%, 52%);
   --vb-violet2: hsl(290, 70%, 36%);
 
   --vb-yellow: hsl(52, 100%, 62%);
@@ -34,9 +34,9 @@ button {
   width: 100vw;
   background: linear-gradient(
     231deg,
-    rgba(22, 6, 40, 1) 0%,
-    rgba(52, 28, 79, 1) 50%,
-    rgba(88, 7, 125, 1) 100%
+    rgb(6, 12, 40) 0%,
+    rgb(28, 37, 79) 50%,
+    rgb(7, 31, 125) 100%
   );
   /* display: flex;
     justify-content: center;
@@ -260,3 +260,22 @@ button {
 
 /* Generate Button Ends 
  */
+
+ .copy{
+  position: absolute;
+  background-color: var(--vb-violet2);
+  color: var(--vb-yellow);
+  font-size: 1.25rem;
+  top: -35px;
+  left: -25px;
+  padding: 5px 10px;
+  border-radius: 1rem;
+  transform: scale(0);
+  transform-origin: bottom;
+  transition: all 250ms ease-in-out;
+ }
+
+ .copy.active{
+  opacity: 1;
+  transform: scale(1);
+ }

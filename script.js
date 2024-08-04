@@ -4,13 +4,16 @@ let lengthDisplay = document.querySelector('[lengthDisplay');
 let slider = document.querySelector('input[type=range]');
 // console.log(slider)
 
+let passwordLength = 10;
 
 function handleSlider() {
     slider.value = passwordLength;
     lengthDisplay.innerText = passwordLength;
+    const min = slider.min;
+    const max = slider.max;
+    slider.style.backgroundSize =((passwordLength - min)*100/(max - min)) + "% 100%"
 }
 
-let passwordLength = 10;
 handleSlider();
 
 slider.addEventListener('input', (event) => {
@@ -110,7 +113,7 @@ async function copyContent() {
     try {
         await navigator.clipboard.writeText(passwordDisplay.value);
 
-        copyMessage.innerText = "Copied"
+        copyMessage.innerText = "Copied" 
     }
     catch (e) {
         // alert("Something went wrong in CopyContent");
@@ -190,24 +193,24 @@ generateBtn.addEventListener('click', () => {
     // Remove Previous Password 
     password = "";
 
-    let arrayOfCheckedFunction = [];
+    let funcArr = [];
 
-    if (uppercase.checked) arrayOfCheckedFunction.push(generateRandomUppercase);
-    if (lowercase.checked) arrayOfCheckedFunction.push(generateRandomLowercase);
-    if (numbers.checked) arrayOfCheckedFunction.push(generateRandomNumber);
-    if (symbols.checked) arrayOfCheckedFunction.push(generateRandomSymbol);
+    if (uppercase.checked) funcArr.push(generateRandomUppercase);
+    if (lowercase.checked) funcArr.push(generateRandomLowercase);
+    if (numbers.checked) funcArr.push(generateRandomNumber);
+    if (symbols.checked) funcArr.push(generateRandomSymbol);
 
     // Compulsory Addition
-    for (let i = 0; i < arrayOfCheckedFunction.length; i++) {
-        password += arrayOfCheckedFunction[i]();
+    for (let i = 0; i < funcArr.length; i++) {
+        password += funcArr[i]();
     }
 
     // console.log("Password: " + password);
 
-    // Additional addition
-    for (let i = 0; i < passwordLength - arrayOfCheckedFunction.length; i++) {
-        let randIndex = generateRandom(0, arrayOfCheckedFunction.length);
-        password += arrayOfCheckedFunction[randIndex]();
+    // Remaining addition
+    for (let i = 0; i < passwordLength - funcArr.length; i++) {
+        let randIndex = generateRandom(0, funcArr.length);
+        password += funcArr[randIndex]();
     }
     // console.log("Password: " + password);
 
